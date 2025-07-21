@@ -5,14 +5,39 @@
     </head>
     <body>
         <main>
-            <h2>Frontend</h2>
-            <label for="html5">HTML5</label><br><progress id="html5" max="100" value="80">80%</progress>
-            <label for="css3">CSS3</label><br><progress id="css3" max="100" value="60">60%</progress>
-            <label for="jquery">jQuery</label><br><progress id="jquery" max="100" value="50">50%</progress>
-            <h2>Backend</h2>
-            <label for="python">Python</label><br><progress id="python" max="100" value="75">80%</progress>
-            <label for="php">PHP</label><br><progress id="php" max="100" value="65">60%</progress>
-            <label for="nodejs">nodejs</label><br><progress id="nodejs" max="100" value="35">50%</progress>
+            <ul>
+                <li>
+                    <h2>Frontend</h2>
+                    <p>HTML5</p>
+                    <p data-value="80">
+                    <progress id="html5" max="100" value="80"></progress>
+                            
+                    <p data-value="60">
+                        <p>CSS3</p>
+                        <progress id="css3" max="100" value="60"></progress>
+
+                        <p>jQuery</p>
+                        <p data-value="50">
+                        <progress id="jquery" max="100" value="50"></progress>
+                    </li>
+                <li>
+                    <h2>Backend</h2>
+                    
+                    <p>Python</p>
+                    <progress id="python" max="100" value="75"></progress>
+                    <progress></progress>
+                    <p data-value="75">
+                    
+
+                    <p>PHP</p>
+                    <progress id="php" max="100" value="65"></progress>
+                    <p data-value="65">
+
+                    <p>Node.js</p>
+                    <progress id="nodejs" max="100" value="35"></progress>
+                    <p data-value="35">
+                </li>
+            </ul>
         </main>
         
     </body>
