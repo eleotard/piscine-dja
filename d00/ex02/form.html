@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Form</title>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+       <form method="get" action="" >
+        <p>
+        <label for="firstname">Firstname : </label><input type="text" name="firstname" id="firstname" autofocus><br>
+        <label for="name">Name : </label><input type="text" name="name" id="name"><br>
+        <label for="age">Age : </label><input type="number" name="age" id="age" min="0"><br>
+        <label for="phone">Phone : </label><input type="tel" name="phone" id="phone"><br>
+        <label for="email">Email : </label><input type="email" name="email" id="email"><br>
+        <label>Student at 42 ? </label><input type="checkbox" name="student" id="student"><br>
+        Gender : <br>
+        <input type="radio" name="gender" value="gender_male" id="gender_male"><label for="gender_male"> Male</label><br>
+        <input type="radio" name="gender" value="gender_female" id="gender_female"><label for="gender_female"> Female</label><br>
+        <input type="radio" name="gender" value="gender_other" id="gender_other"><label for="gender_other"> Other</label><br>
+        </p>
+        <button type="button" onclick="displayFormContents()">Envoyer</button>
+        <button type="reset">Reinitialiser</button>
+        </form>
+    </body>
+</html>
