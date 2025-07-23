@@ -4,7 +4,7 @@ def check_args():
     if (len(sys.argv) != 2):
         return False
 
-def associate_state_capital(arg):
+def ft(arg):
     states = {
         "Oregon" : "OR",
         "Alabama" : "AL",
@@ -17,12 +17,15 @@ def associate_state_capital(arg):
         "NJ": "Trenton",
         "CO": "Denver"
         }
-    if arg in states:
-        print(capital_cities[states[arg]])
+    tmp = dict([(value, key) for value in capital_cities.values(), for key in states.keys()])
+    print(tmp)
+
+    if arg in tmp:
+        print(tmp[arg])
     else:
-        print("Unknown state")
+        print("Unknown capital city")
 
 if __name__ == "__main__":
     if check_args() == False:
         sys.exit()
-    associate_state_capital(sys.argv[1])
+    ft(sys.argv[1])
