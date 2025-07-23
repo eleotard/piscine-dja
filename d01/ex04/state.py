@@ -17,9 +17,8 @@ def ft(arg):
         "NJ": "Trenton",
         "CO": "Denver"
         }
-    tmp = dict([(value, key) for value in capital_cities.values(), for key in states.keys()])
-    print(tmp)
-
+        
+    tmp = {city: state for city, state in zip(capital_cities.values(), states.keys())}
     if arg in tmp:
         print(tmp[arg])
     else:
