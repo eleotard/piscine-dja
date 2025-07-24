@@ -22,7 +22,7 @@ def ft():
         'Burton' : '1939',
     }
     res = []
-    l = [x for x in d.values()]
+    l = list(set([x for x in d.values()]))
     l = sorted(l)
     for i in range(0, len(l)):
         tmp = []
@@ -30,10 +30,15 @@ def ft():
             if value == l[i]:
                 tmp.append(key)
         res.append(tmp)
+    last = []
     for x in res:
         if len(x) > 1:
             x = sorted(x)
-    print("\n".join(res))
+            for e in x:
+                last.append(e)
+        else:
+            last.append(x[0])
+    print("\n".join(e for e in last))
 
 if __name__ == "__main__":
     ft()
