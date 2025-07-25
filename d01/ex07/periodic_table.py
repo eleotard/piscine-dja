@@ -46,6 +46,7 @@ def create_html_file():
         # width: 100%;
         # table-layout: auto;
 def generate_css():
+    
     css_document = f"""
     table {{
         margin: auto;
@@ -55,6 +56,7 @@ def generate_css():
                 border: 1px solid #000000;
                 padding: 50px;
                 text-align: middle;
+                font-family: 'Arial', sans-sherif;
             }}
     h1 {{
         text-align: center;
@@ -64,10 +66,34 @@ def generate_css():
     with open(CSS_FILE, "w") as file:
         file.write(css_document)
 
+def create_dict(file):
+    print(periodic_file.read())
+    file.seek(0)
+    if not file:
+        sys.exit()
+    d = {}
+    for line in file:
+        tmp = line.split(" = ")  
+        params = tmp[1][:-1]
+        nom = tmp[0]
+        params = params.split(", ")
+        for el in params:
+            index = el.find(":")
+            print(index)
+            print()
+            el = el[index:]
+            print(el)
+            print(params)
+        d[nom] = {"num": params[0], "symb": params[1], "mass": params[2]}
+        break
+        # print(f"[{params}]")
+        # print(f"[{tmp}]")
+    print(d)
+
 if __name__ == "__main__":
     #periodic_file = read_file("periodic_table.txt")
     generate_css()
     with open(SOURCE_FILE, "r") as periodic_file:
-        print(periodic_file.read())
+        elements = create_dict(periodic_file)
     create_html_file()
     # ft()
