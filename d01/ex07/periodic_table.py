@@ -7,7 +7,7 @@ CSS_FILE = "style.css"
 HTML_FILE = "periodic_table.html"
 
             # <div style="overflow-x:auto">
-def create_html_file():
+def create_html_file(d):
     html_document = f"""
     <!DOCTYPE html>
     <html lang=en>
@@ -21,22 +21,33 @@ def create_html_file():
             <table>
     """
     col = 0
-    for col in range(0, 8):
+    index = 0
+    for col in range(0, 7):
         row = 0
         html_document += "<tr>\n"
         for r in range(0, 18):
-            if (col == 0):
-                if ((r == 0) or (r == 17)):
-                    html_document += "<td></td>\n"
-                else:
-                    html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
-            elif ((col == 1) or (col == 2)):
-                if ((0 <= r <= 1) or (11 <= r <= 17)):
-                    html_document += "<td></td>\n"
-                else:
-                    html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
+            print(index)
+            if index < len(d) and r == int(d[index]["pos"]):
+                html_document += "<td><ul><h4>{d[index]["name"]}</h4><></ul></td>\n"
+                index += 1
             else:
-                    html_document += "<td></td>\n"
+                html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
+
+            
+            # if (col == 0):
+            #     if ((r == 0) or (r == 17)):
+            #         html_document += "<td></td>\n"
+            #     else:
+            #         html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
+            # elif ((col == 1) or (col == 2)):
+            #     if ((0 <= r <= 1) or (11 <= r <= 17)):
+            #         html_document += "<td>{}</td>\n"
+            #     else:
+            #         html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
+            # else:
+            #         html_document += "<td></td>\n"
+    
+
     html_document += "</tr>\n</table>\n</body>\n<html>\n"
 
      
@@ -71,29 +82,22 @@ def create_dict(file):
     file.seek(0)
     if not file:
         sys.exit()
-    d = {}
+    a = [] 
     for line in file:
         tmp = line.split(" = ")  
         params = tmp[1][:-1]
-        nom = tmp[0]
+        name = tmp[0]
         params = params.split(", ")
-        for el in params:
-            index = el.find(":")
-            print(index)
-            print()
-            el = el[index:]
-            print(el)
-            print(params)
-        d[nom] = {"num": params[0], "symb": params[1], "mass": params[2]}
-        break
-        # print(f"[{params}]")
-        # print(f"[{tmp}]")
-    print(d)
+        for i in range(0, len(params)):
+            index = params[i].find(":")
+            params[i] = params[i][index + 1:]
+        a.append({"name": name, "pos": params[0], "num": params[1], "symb": params[2], "mass": params[3]})
+    return a
 
 if __name__ == "__main__":
-    #periodic_file = read_file("periodic_table.txt")
     generate_css()
     with open(SOURCE_FILE, "r") as periodic_file:
         elements = create_dict(periodic_file)
-    create_html_file()
-    # ft()
+    for el in elements:
+        print(el)
+    create_html_file(elements)
