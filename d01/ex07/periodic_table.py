@@ -13,6 +13,7 @@ def create_html_file(d):
     <html lang=en>
         <head>
             <meta charset="UTF-8">
+            <meta name="viewport", content="width-device-width, initial-scale=1.0">
             <title>Periodic Table</title>
             <link rel="stylesheet" href={CSS_FILE}>
         </head>
@@ -28,10 +29,10 @@ def create_html_file(d):
         for r in range(0, 18):
             print(index)
             if index < len(d) and r == int(d[index]["pos"]):
-                html_document += "<td><ul><h4>{d[index]["name"]}</h4><></ul></td>\n"
+                html_document += f"<td><ul><h4>{d[index]["name"]}</h4></ul><li>No {d[index]["num"]}</li><li>{d[index]["symb"]}</li><li>{d[index]["mass"]}</li></td>\n"
                 index += 1
             else:
-                html_document += "<td style=\"border: 0px solid #000000; padding: 50px;\"></td>\n"
+                html_document += "<td style=\"border: 0px solid #000000; padding: 5px;\"></td>\n"
 
             
             # if (col == 0):
@@ -56,6 +57,10 @@ def create_html_file(d):
 
         # width: 100%;
         # table-layout: auto;
+                # text-align: middle;
+    # li {{
+    #     text-align: left;
+    # }}
 def generate_css():
     
     css_document = f"""
@@ -64,20 +69,36 @@ def generate_css():
         border-collapse: collapse;
     }}
     th, td {{
-                border: 1px solid #000000;
-                padding: 50px;
-                text-align: middle;
-                font-family: 'Arial', sans-sherif;
-            }}
+        border: 1px solid #000000;
+        padding: 5px;
+        font-family: 'Arial', sans-sherif;
+    }}
     h1 {{
         text-align: center;
         font-family: 'Arial', sans-sherif;
     }}
+    h1 {{
+        text-align: center;
+        font-family: 'Arial', sans-sherif;
+    }}
+
+    ul {{
+        list-style-type:none;
+        margin:0px;
+        padding:0px;
+        position:relative;
+    }}
+
+    .list li {{
+        list-style-type: none;
+    }}
+
     """
+        # list-style-position: inside;
     with open(CSS_FILE, "w") as file:
         file.write(css_document)
 
-def create_dict(file):
+def create_tab_of_elements(file):
     print(periodic_file.read())
     file.seek(0)
     if not file:
@@ -97,7 +118,7 @@ def create_dict(file):
 if __name__ == "__main__":
     generate_css()
     with open(SOURCE_FILE, "r") as periodic_file:
-        elements = create_dict(periodic_file)
+        elements = create_tab_of_elements(periodic_file)
     for el in elements:
         print(el)
     create_html_file(elements)
