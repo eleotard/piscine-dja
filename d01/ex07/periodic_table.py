@@ -72,6 +72,7 @@ def generate_css():
         border: 1px solid #000000;
         padding: 5px;
         font-family: 'Arial', sans-sherif;
+        padding-left: 20px;
     }}
     h1 {{
         text-align: center;
@@ -83,17 +84,17 @@ def generate_css():
     }}
 
     ul {{
-        list-style-type:none;
         margin:0px;
         padding:0px;
         position:relative;
     }}
 
-    .list li {{
-        list-style-type: none;
-    }}
 
     """
+        # list-style-type:none;
+    # .list li {{
+    #     list-style-type: none;
+    # }}
         # list-style-position: inside;
     with open(CSS_FILE, "w") as file:
         file.write(css_document)
