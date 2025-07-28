@@ -29,7 +29,7 @@ def create_html_file(d):
                 index += 1
             else:
                 html_document += "\t\t\t\t<td style=\"border: 0px solid #000000; padding: 5px;\"></td>\n"
-    html_document += "\t\t\t</tr>\n\t\t</table>\n\t</body>\n<html>\n"
+    html_document += "\t\t\t</tr>\n\t\t</table>\n\t</body>\n</html>\n"
     with open(HTML_FILE, "w") as file:
         file.write(html_document)
 
