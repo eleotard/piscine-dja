@@ -10,7 +10,7 @@ def create_html_file(d):
 <html lang=en>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport", content="width-device-width, initial-scale=1.0">
+        <meta name="viewport" content="width-device-width initial-scale=1.0">
         <title>Periodic Table</title>
         <link rel="stylesheet" href={CSS_FILE}>
     </head>
@@ -25,7 +25,7 @@ def create_html_file(d):
         html_document += "\t\t\t<tr>\n"
         for r in range(0, 18):
             if index < len(d) and r == int(d[index]["pos"]):
-                html_document += f"\t\t\t\t<td>\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<h4>{d[index]["name"]}</h4>\n\t\t\t\t\t\t<li>No {d[index]["num"]}</li>\n\t\t\t\t\t\t<li>{d[index]["symb"]}</li>\n\t\t\t\t\t\t<li>{d[index]["mass"]}</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</td>\n"
+                html_document += f"\t\t\t\t<td>\n\t\t\t\t\t<h4>{d[index]["name"]}</h4>\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<li>No {d[index]["num"]}</li>\n\t\t\t\t\t\t<li>{d[index]["symb"]}</li>\n\t\t\t\t\t\t<li>{d[index]["mass"]}</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</td>\n"
                 index += 1
             else:
                 html_document += "\t\t\t\t<td style=\"border: 0px solid #000000; padding: 5px;\"></td>\n"
