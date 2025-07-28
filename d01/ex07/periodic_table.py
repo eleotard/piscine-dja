@@ -6,30 +6,30 @@ HTML_FILE = "periodic_table.html"
 
 def create_html_file(d):
     html_document = f"""
-    <!DOCTYPE html>
-    <html lang=en>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport", content="width-device-width, initial-scale=1.0">
-            <title>Periodic Table</title>
-            <link rel="stylesheet" href={CSS_FILE}>
-        </head>
-        <body>
-            <h1>PERIODIC TABLE OF ELEMENTS</h1>
-            <table>
-    """
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport", content="width-device-width, initial-scale=1.0">
+        <title>Periodic Table</title>
+        <link rel="stylesheet" href={CSS_FILE}>
+    </head>
+    <body>
+        <h1>PERIODIC TABLE OF ELEMENTS</h1>
+        <table>
+"""
     col = 0
     index = 0
     for col in range(0, 7):
         row = 0
-        html_document += "<tr>\n"
+        html_document += "\t\t\t<tr>\n"
         for r in range(0, 18):
             if index < len(d) and r == int(d[index]["pos"]):
-                html_document += f"<td><ul><h4>{d[index]["name"]}</h4></ul><li>No {d[index]["num"]}</li><li>{d[index]["symb"]}</li><li>{d[index]["mass"]}</li></td>\n"
+                html_document += f"\t\t\t\t<td>\n\t\t\t\t\t<ul>\n\t\t\t\t\t\t<h4>{d[index]["name"]}</h4>\n\t\t\t\t\t\t<li>No {d[index]["num"]}</li>\n\t\t\t\t\t\t<li>{d[index]["symb"]}</li>\n\t\t\t\t\t\t<li>{d[index]["mass"]}</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</td>\n"
                 index += 1
             else:
-                html_document += "<td style=\"border: 0px solid #000000; padding: 5px;\"></td>\n"
-    html_document += "</tr>\n</table>\n</body>\n<html>\n"
+                html_document += "\t\t\t\t<td style=\"border: 0px solid #000000; padding: 5px;\"></td>\n"
+    html_document += "\t\t\t</tr>\n\t\t</table>\n\t</body>\n<html>\n"
     with open(HTML_FILE, "w") as file:
         file.write(html_document)
 
@@ -86,6 +86,9 @@ def create_tab_of_elements(file):
 
 if __name__ == "__main__":
     generate_css()
-    with open(SOURCE_FILE, "r") as periodic_file:
-        elements = create_tab_of_elements(periodic_file)
+    try:   
+        with open(SOURCE_FILE, "r") as periodic_file:
+            elements = create_tab_of_elements(periodic_file)
+    except:
+        sys.exit()    
     create_html_file(elements)
